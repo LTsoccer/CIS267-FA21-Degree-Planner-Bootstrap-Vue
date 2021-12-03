@@ -1,9 +1,9 @@
 const lacCourses = [
     {
-    "Course ID": "BIB 121",
-    "Course Name": "Life of Christ",
-    "Credit Hours": "2",
-    "Course Description": "A thorough textual study of the life of Jesus the Christ. Emphasis is given to his virgin birth, his message and ministry, his crucifixion, his resurrection, and his ascension, all leading to a greater awareness of his greatness as the Son of God and Savior of the world. Moral, doctrinal, historical, and practical aspects of the life of Christ are also emphasized. (Text course.)",
+    id: "BIB 121",
+    name: "Life of Christ",
+    hours: "2",
+    description: "A thorough textual study of the life of Jesus the Christ. Emphasis is given to his virgin birth, his message and ministry, his crucifixion, his resurrection, and his ascension, all leading to a greater awareness of his greatness as the Son of God and Savior of the world. Moral, doctrinal, historical, and practical aspects of the life of Christ are also emphasized. (Text course.)",
     "Prerequisite": "",
     "Semester Offered": "Fall",
     "Category": "LAC",
