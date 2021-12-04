@@ -5,8 +5,10 @@
                   id="fall2019heading"
                   v-b-toggle:[semester.collapseId]
                 >
-                  <div :id="semester.id">
-                    <h4 class="my-0">{{ semester.name }}</h4>
+                  <div class="changes" :id="semester.id" @click="change">
+                    <h4 class="my-0 change1">{{ semester.name }}</h4>
+                    <span class="changing" v-if="before" >⯆</span>
+                    <span class="changing" v-if="!before" >⯅</span>
                   </div>
                 </h2>
                 <b-collapse :id="semester.collapseId">
@@ -18,7 +20,7 @@
                         <td scope="col"></td>
                         <th scope="col">Credits</th>
                       </thead>
-                      <tr v-for="course in semester.classes" :key="course.id" @click="remove(course.id, semester.id)">
+                      <tr v-for="course in semester.classes" :course=course :key="course.id" @click="remove(course.id, semester.id)">
                         <td>{{course.id}}</td>
                         <td>
                           <span class="fw-bold"> {{course.name}} </span>
@@ -27,6 +29,12 @@
                           <span class="badge bg-primary"> {{course.badge}} </span>
                         </td>
                         <td>{{course.hours}}</td>
+                      </tr>
+                      <tr>
+                        <th>Total Hours</th>
+                        <td></td>
+                        <td></td>
+                        <th>{{semester.total}}</th>
                       </tr>
                     </table>
                   </div>
@@ -40,7 +48,20 @@ export default {
     props: {
         semester: Object
     },
+    data () {
+      return {
+        before: true
+      }
+    },
     methods: {
+      change() {
+        if (this.before == true) {
+          this.before = false;
+        }
+        else {
+          this.before = true;
+        }
+      },
         remove(id, semester) {
             this.$emit("remove-course", id, semester);
         }
@@ -50,5 +71,15 @@ export default {
 </script>
 
 <style>
-
+.changes {
+  display: flex;
+}
+.change1 {
+  flex-basis: 75%;
+}
+.changing {
+  flex-basis: 25%;
+  justify-content: space-between;
+  text-align: right;
+}
 </style>

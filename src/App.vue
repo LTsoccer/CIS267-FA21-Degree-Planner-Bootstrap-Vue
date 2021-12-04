@@ -43,7 +43,6 @@
           <!-- Semester Schedules -->
           <div class="col-lg-6 semester-schedules">
             <h3>Semester Schedules</h3>
-
             <SemesterSchedule
             :semester=schedule
               v-for="schedule in schedules"
@@ -52,7 +51,6 @@
               id="schedule.id"
               @remove-course="remove"
             />
-             
           </div>
 
           <!-- Table of Contents Sidebar -->
@@ -129,33 +127,36 @@ export default {
         if (s.id == value) {
           if (!s.classes.includes(class1)) {
           s.classes.push(class1);
+          s.total = s.total + parseInt(class1.hours);
         }
         }
         }
       )
     },
     remove(id, semester) {
-      let class1 = {};
+      let class2 = {};
       this.cisCourses.forEach(c => {
         if (c.id == id) {
-          class1 = c;
+          class2 = c;
         }
       })
       this.lacCourses.forEach(c => {
         if (c.id == id) {
-          class1 = c;
+          class2 = c;
         }
       })
       this.cybCourses.forEach(c => {
         if (c.id == id) {
-          class1 = c;
+          class2 = c;
         }
       })
       this.schedules.forEach( s => 
       {
         if (s.id == semester) {
-          if (s.classes.includes(class1)) {
-          s.classes.pop(class1);
+          if (s.classes.includes(class2)) {
+            const index = s.classes.indexOf(class2);
+            s.classes.splice(index, 1);
+          s.total = s.total - parseInt(class2.hours);
         }
         }
         }
@@ -171,42 +172,49 @@ export default {
         {
           name: "Fall 2020",
           id: "fall2020",
+          total: 0,
           collapseId: "fall2020schedule",
           classes: [],
         },
         {
           name: "Spring 2021",
           id: "spring2021",
+          total: 0,
           collapseId: "spring2021schedule",
           classes: [],
         },
         {
           name: "Fall 2021",
           id: "fall2021",
+          total: 0,
           collapseId: "fall2021schedule",
           classes: [],
         },
         {
           name: "Spring 2022",
           id: "spring2022",
+          total: 0,
           collapseId: "spring2022schedule",
           classes: [],
         },
         {
           name: "Fall 2022",
           id: "fall2022",
+          total: 0,
           collapseId: "fall2022schedule",
           classes: [],
         },
         {
           name: "Spring 2023",
           id: "spring2023",
+          total: 0,
           collapseId: "spring2023schedule",
           classes: [],
         },
         {
           name: "Fall 2023",
           id: "fall2023",
+          total: 0,
           collapseId: "fall2023schedule",
           classes: [],
         },
@@ -214,6 +222,7 @@ export default {
           name: "Spring 2024",
           id: "spring2024",
           collapseId: "spring2024schedule",
+          total: 0,
           classes: [],
         },
       ],
