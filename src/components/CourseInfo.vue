@@ -49,8 +49,11 @@
                           <p class="text-muted card-text">
                             {{course.description}}
                           </p>
-                          <p class="text-muted card-text">
+                          <p class="text-muted card-text" v-if='!course.prereqs==""'>
                             Prerequisites: {{course.prereqs}}
+                          </p>
+                          <p class="text-muted card-text" v-if='course.prereqs==""'>
+                            Prerequisites: none
                           </p>
                         </b-collapse>
                       </div>
