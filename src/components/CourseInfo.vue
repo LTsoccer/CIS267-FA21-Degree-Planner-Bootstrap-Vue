@@ -49,6 +49,9 @@
                           <p class="text-muted card-text">
                             {{course.description}}
                           </p>
+                          <p class="text-muted card-text">
+                            Prerequisites: {{course.prereqs}}
+                          </p>
                         </b-collapse>
                       </div>
                     </div>
